@@ -8,6 +8,8 @@ authors = ["shchen <c95csh@ncsist.org.tw>"]
 python = "^3.8"
 pandas = "^1.2.3"
 nltk = "^3.5"
+transformers = "^4.4.1"
+torch = "^1.8.0"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.11.1"
