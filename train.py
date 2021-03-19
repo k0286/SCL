@@ -95,11 +95,11 @@ val_dataset = NerDataset(val_encodings, val_labels)
 model = BertForTokenClassification.from_pretrained("cahya/bert-base-indonesian-NER")
 
 
-def compute_metrics(pred):
-    labels = pred.label_ids
-    preds = pred.predictions.argmax(-1)
-    acc = accuracy_score(labels, preds)
-    return {"accuracy": acc}
+# def compute_metrics(pred):
+#     labels = pred.label_ids
+#     preds = pred.predictions.argmax(-1)
+#     acc = accuracy_score(labels, preds)
+#     return {"accuracy": acc}
 
 
 training_args = TrainingArguments(
@@ -111,6 +111,8 @@ training_args = TrainingArguments(
     weight_decay=0.01,  # strength of weight decay
     logging_dir="./logs",  # directory for storing logs
     evaluation_strategy="epoch",
+    # evaluation_strategy="steps",
+    # eval_steps=1
 )
 
 trainer = Trainer(
@@ -118,7 +120,7 @@ trainer = Trainer(
     args=training_args,  # training arguments, defined above
     train_dataset=train_dataset,  # training dataset
     eval_dataset=val_dataset,  # evaluation dataset
-    compute_metrics=compute_metrics,
+    # compute_metrics=compute_metrics,
 )
 
 trainer.train()
